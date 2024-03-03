@@ -5,5 +5,5 @@
 
 int main() {
 	window();
-	return 0; 
+	BookManager manager("books.txt");
 }

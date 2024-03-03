@@ -4,7 +4,13 @@
 class BookManager {
 private:
 	vector<Book>books;
+	string filename;
 public:
+
+	BookManager(string filename) {
+		LoadBook();
+	}
+	//构造函数
 
 	void AddBook(Book& book) {
 		cout << "请输入书的名称\n";
@@ -15,8 +21,9 @@ public:
 		cin >> book.isbn;
 		cout << "请输入书的库存\n";
 		cin >> book.stock;
-
 		books.push_back(book);
+		SaveBook();
+		cout << "添加完成\n";
 	}
 	//添加图书
 
@@ -24,25 +31,28 @@ public:
 
 		cout << "请输入要删除书的书号\n";
 		cin >> isbn;
-		for (int i = 0; i < books.size(); i++)
+		for (unsigned int i = 0; i < books.size(); i++)
 		{
 			if (books[i].isbn == isbn) {
 				books.erase(books.begin() + i);
+				SaveBook();
 				cout << "已删除";
 			}
 		}
 	}
 	//删除图书,待处理：不存在书的情况
 
-	void SortBook() {
-		sort(books.begin(), books.end());
-	}
-	//排序图书
+
+//	void SortBook() {
+//		sort(books.begin(), books.end());
+//	}
+	//排序图书,存在问题
+
 
 	void SearchByTitle(std::string& title){
 		cout << "请输入书的标题";
 		cin >> title;
-		for (int i = 0; i < books.size(); i++) {
+		for (unsigned int i = 0; i < books.size(); i++) {
 			if (books[i].title == title) {
 				books[i].print();
 			}
@@ -50,10 +60,11 @@ public:
 	}
 	//根据标题搜索，待处理：搜索功能遍历数据后不存在书的情况
 
+
 	void SearchByAuthor(std::string& author) {
 		cout << "请输入书的作者";
 		cin >> author;
-		for (int i = 0; i < books.size(); i++) {
+		for (unsigned int i = 0; i < books.size(); i++) {
 			if (books[i].author == author) {
 				books[i].print();
 			}
@@ -61,14 +72,71 @@ public:
 	}
 	//根据作者搜索
 
+
 	void SearchByISBN(std::string& isbn){
 		cout << "请输入书的书号";
 		cin >> isbn;
-		for (int i = 0; i < books.size(); i++) {
+		for (unsigned int i = 0; i < books.size(); i++) {
 			if (books[i].isbn == isbn) {
 				books[i].print();
 			}
 		}
 	}
 	//根据书号搜索
+
+
+
+	void LoadBook()
+	{
+		ifstream file(filename);
+		if (file.is_open())
+		{
+			string line;
+			while (getline(file, line))
+			{	
+				string title = line.substr(0, line.find(","));
+				line = line.substr(line.find(",") + 1);
+
+				string author = line.substr(0, line.find(","));
+				line = line.substr(line.find(",") + 1);
+
+				string isbn = line.substr(0, line.find(","));
+				line = line.substr(line.find(",") + 1);
+
+				int stock = stod(line);
+				Book book(title,author, isbn,stock);
+				books.push_back(book);
+			}
+			file.close();
+		}
+	}
+	//处理图书的数据
+
+
+	void SaveBook()
+	{
+		ofstream file(filename);
+		if (file.is_open())
+		{
+			for (int i = 0; i < books.size(); i++)
+			{
+				file << books[i].ToString() << endl;
+			}
+			file.close();
+		}
+	}
+	//将图书状态保存
+
+
+	void ShowAllBooks()
+	{
+		for (int i = 0; i < books.size(); i++)
+		{
+			books[i].print();
+			cout << endl;
+		}
+	}
+	//打印所有图书
+
+
 };

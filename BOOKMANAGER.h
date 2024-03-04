@@ -36,16 +36,22 @@ public:
 			if (books[i].isbn == isbn) {
 				books.erase(books.begin() + i);
 				SaveBook();
-				cout << "已删除";
+				cout << "已删除\n";
 			}
+			else
+				cout << "该图书不存在\n";
 		}
 	}
-	//删除图书,待处理：不存在书的情况
+	//删除图书
 
 
-//	void SortBook() {
-//		sort(books.begin(), books.end());
-//	}
+	void SortBook()
+	{
+		sort(books.begin(), books.end(), [](Book a, Book b) {
+			return a.isbn < b.isbn;
+			});
+		cout << "" << endl;
+	}
 	//排序图书,存在问题
 
 
@@ -56,6 +62,10 @@ public:
 			if (books[i].title == title) {
 				books[i].print();
 			}
+		}
+		if (books.size() == 0)
+		{
+			cout << "未找到该图书信息！" << endl;
 		}
 	}
 	//根据标题搜索，待处理：搜索功能遍历数据后不存在书的情况
@@ -69,6 +79,10 @@ public:
 				books[i].print();
 			}
 		}
+		if (books.size() == 0)
+		{
+			cout << "未找到该图书信息！" << endl;
+		}
 	}
 	//根据作者搜索
 
@@ -81,6 +95,11 @@ public:
 				books[i].print();
 			}
 		}
+		if (books.size() == 0)
+		{
+			cout << "未找到该图书信息！" << endl;
+		}
+		
 	}
 	//根据书号搜索
 

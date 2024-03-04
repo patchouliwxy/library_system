@@ -20,15 +20,14 @@ public:
 
 //成员函数
 	void print() {
-		cout << "Title:" << title << ",Author:" << author << ",ISBN:" << isbn << ",Stock:" << stock << endl;
+		cout << "Title:" << title << ",Author:" << author << ",ISBN:" << isbn << ",Stock:" << stock << endl<<endl;
 	}
 
 	string ToString() {
 		string str = title + "," + author + "," + isbn + "," + to_string(stock);
 		return str;
 	}
-	//将书的数据转化为一串字符串
-
+	//将书的数据转化为一串字符串，方便存储到text文件
 
 
 };

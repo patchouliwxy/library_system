@@ -45,14 +45,18 @@ public:
 	//删除图书
 
 
+	static bool cmp_isbn(Book& a, Book& b) {
+		return a.isbn < b.isbn;
+	}
+
+
 	void SortBook()
 	{
-		sort(books.begin(), books.end(), [](Book a, Book b) {
-			return a.isbn < b.isbn;
-			});
-		cout << "" << endl;
+		sort(books.begin(), books.end(), &BookManager::cmp_isbn);
+		ShowAllBooks();
+		cout << "根据书号排序完成";
 	}
-	//排序图书,存在问题
+	//排序图书
 
 
 	void SearchByTitle(std::string& title){
@@ -133,7 +137,7 @@ public:
 		ofstream file(filename);
 		if (file.is_open())
 		{
-			for (int i = 0; i < books.size(); i++)
+			for (unsigned int i = 0; i < books.size(); i++)
 			{
 				file << books[i].ToString() << endl;
 			}
@@ -145,7 +149,7 @@ public:
 
 	void ShowAllBooks()
 	{
-		for (int i = 0; i < books.size(); i++)
+		for (unsigned int i = 0; i < books.size(); i++)
 		{
 			books[i].print();
 			cout << endl;

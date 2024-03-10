@@ -41,7 +41,8 @@ void window() {
 			system("cls");
 			break;
 		case 3:
-			bookB.ToString();
+			bookA.SortBook();
+
 			system("pause");
 			system("cls");
 			break;

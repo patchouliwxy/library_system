@@ -62,13 +62,12 @@ public:
 			if (books[i].title == title) {
 				books[i].print();
 			}
+			else if(i == books.size()-1)
+				cout << "未找到该图书信息！" << endl;
 		}
-		if (books.size() == 0)
-		{
-			cout << "未找到该图书信息！" << endl;
-		}
+
 	}
-	//根据标题搜索，待处理：搜索功能遍历数据后不存在书的情况
+	//根据标题搜索
 
 
 	void SearchByAuthor(std::string& author) {
@@ -78,11 +77,10 @@ public:
 			if (books[i].author == author) {
 				books[i].print();
 			}
+			else if (i == books.size() - 1)
+				cout << "未找到该图书信息！" << endl;
 		}
-		if (books.size() == 0)
-		{
-			cout << "未找到该图书信息！" << endl;
-		}
+
 	}
 	//根据作者搜索
 
@@ -94,10 +92,8 @@ public:
 			if (books[i].isbn == isbn) {
 				books[i].print();
 			}
-		}
-		if (books.size() == 0)
-		{
-			cout << "未找到该图书信息！" << endl;
+			else if (i == books.size() - 1)
+				cout << "未找到该图书信息！" << endl;
 		}
 		
 	}
@@ -158,4 +154,4 @@ public:
 	//打印所有图书
 
 
-};
+}; 

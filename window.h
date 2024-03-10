@@ -32,15 +32,22 @@ void window() {
 		{
 		case 1:
 			bookA.AddBook(bookB);
+			system("pause");
+			system("cls");
 			break;
 		case 2:
 			bookA.RemoveBook(i);
+			system("pause");
+			system("cls");
 			break;
 		case 3:
-			bookA.SortBook();
+			bookB.ToString();
+			system("pause");
+			system("cls");
 			break;
 		case 4:
 			while (1 == 1) {
+				system("cls");
 				cout << "\t\t\t///////////////请选择你的搜索方式/////////////\n";
 				cout << "\t\t\t////////////////1.根据标题搜索///////////////\n";
 				cout << "\t\t\t////////////////2.根据作者搜索///////////////\n";
@@ -54,21 +61,28 @@ void window() {
 				{
 				case 1:
 					bookA.SearchByTitle(t);
+					system("pause");
 					break;
 				case 2:
 					bookA.SearchByAuthor(a);
+					system("pause");
 					break;
 				case 3:
 					bookA.SearchByISBN(i);
+					system("pause");
 					break;
 				case 4:
+					system("cls");
 					goto labelA;
 				default:
 					cout << "请重新输入选项\n";
+					system("pause");
 				}
 			}
 		case 5:
 			bookA.ShowAllBooks();
+			system("pause");
+			system("cls");
 			break;
 		case 6:
 			cout << "已关闭系统";
@@ -76,6 +90,8 @@ void window() {
 
 		default:
 			cout << "请重新输入选项\n";
+			system("pause");
+			system("cls");
 		}
 	}
 }
